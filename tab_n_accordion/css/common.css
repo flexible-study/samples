@@ -1,0 +1,61 @@
+/* common */
+*, ::before, ::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Noto Sans KR', sans-serif;
+  background-color: #f9f9f9;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+body {
+  background-color: #FAFAFA;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0 15px;
+  max-width: calc(1200px + 15px + 15px);
+  width: 100%;
+}
+
+.screen-reader-text {
+  position: absolute;
+  margin: -1px;
+  width: 1px;
+  height: 1px;
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  word-wrap: normal;
+  overflow: hidden;
+}
+
+#header {
+  flex: 0 0 auto;
+  width: 100%;
+  background-color: #333;
+}
+
+#header .title {
+  margin: 0;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 500;
+  color: #fff;
+}
