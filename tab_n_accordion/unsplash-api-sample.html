@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unsplash API 샘플</title>
+
+  <!-- fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+
+  <!-- style -->
+  <link rel="stylesheet" href="./css/common.css">
+</head>
+
+<body>
+  <div id="wrap">
+    <header id="header">
+      <div class="container">
+        <h1 class="title">Unsplash API 샘플 (발급받은 ACCESS KEY를 추가하고 브라우저 크기를 조절해보세요)</h1>
+      </div>
+    </header>
+
+    <main id="main">
+      <div id="image-area"></div>
+
+      <script>
+        const ACCESS_KEY = '액세스 키를 입력해주세요';
+
+        fetch(`https://api.unsplash.com/photos/random?client_id=${ACCESS_KEY}`)
+          .then(function(response) {
+            // 응답값 json 형식으로 반환
+            return response.json();
+          })
+          .then(function(randomImage) {
+            // return 확인
+            console.log(randomImage);
+
+            // HTML 추가
+            const imageArea = document.querySelector('#image-area');
+            // descktop first
+            // Desktop First 이기 때문에 작은 이미지부터 점점 큰 이미지 순으로 작성되었습니다.
+            // imageArea.innerHTML = `<picture>
+            //   <source media="(max-width: 575px)" srcset="${randomImage.urls.thumb}">
+            //   <source media="(max-width: 1023px)" srcset="${randomImage.urls.small}">
+            //   <img src="${randomImage.urls.full}" alt="${randomImage.alt_description}">
+            // </picture>`;
+
+            // mobile first
+            // Mobile First는 반대로 큰 이미지부터 작은 이미지 순으로 입력해주세요.
+            imageArea.innerHTML = `<picture>
+              <source media="(min-width: 1023px)" srcset="${randomImage.urls.full}">
+              <source media="(min-width: 575px)" srcset="${randomImage.urls.small}">
+              <img src="${randomImage.urls.thumb}" alt="${randomImage.alt_description}">
+            </picture>`;
+          });
+      </script>
+    </main>
+  </div>
+</body>
+</html>
