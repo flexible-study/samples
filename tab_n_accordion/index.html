@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>2주 차 - JS 텝 만들기</title>
+  <title>Tab & Accordion</title>
 
   <!-- fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,21 +20,20 @@
   <div id="wrap">
     <header id="header">
       <div class="container">
-        <h1 class="title">2주 차 - JS 텝 만들기</h1>
+        <h1 class="title">Tab & Accordion</h1>
       </div>
     </header>
 
     <main id="main">
-      <!-- 텝 코드 시작 -->
       <div id="tab" class="tab-container">
         <div class="tab-navigation">
-          <a href="#tab1" class="button"><span>We Are&nbsp;</span>Grepp.</a>
-          <a href="#tab2" class="button"><span>Our&nbsp;</span>Service</a>
-          <a href="#tab3" class="button active"><span>Our&nbsp;</span>History</a>
+          <button data-tab-target="#tab1" type="button" class="button active"><span>We Are&nbsp;</span>Grepp.</button>
+          <button data-tab-target="#tab2" type="button" class="button"><span>Our&nbsp;</span>Service</button>
+          <button data-tab-target="#tab3" type="button" class="button"><span>Our&nbsp;</span>History</button>
         </div>
 
         <div class="tab-wrapper">
-          <article id="tab1" class="tab-content tab1-content">
+          <article id="tab1" class="tab-content tab1-content active">
             <div class="inner">
               <h2 class="screen-reader-text">We Are Grepp.</h2>
 
@@ -85,7 +84,7 @@
             </div>
           </article>
 
-          <article id="tab3" class="tab-content tab3-content active">
+          <article id="tab3" class="tab-content tab3-content">
             <div class="inner">
               <h2 class="screen-reader-text">Our History</h2>
 
@@ -100,16 +99,13 @@
       <script>
         // 텝 스크립트
         const tabContainer = document.querySelector('.tab-container');
-        const tabNavigations = tabContainer.querySelectorAll('.tab-navigation a');
+        const tabNavigations = tabContainer.querySelectorAll('.tab-navigation .button');
 
         tabNavigations.forEach((navigation, index) => {
-          navigation.addEventListener('click', (event) => {
-            // 기본 A 태그 이벤트 초기화
-            event.preventDefault();
-
+          navigation.addEventListener('click', () => {
             // 불필요한 실행 방지를 위한 active 체크
             if ( ! navigation.classList.contains('active') ) {
-              const tabId = navigation.getAttribute('href');
+              const tabId = navigation.dataset.tabTarget;
 
               navigation.parentNode.querySelector('.active').classList.remove('active');
               navigation.classList.add('active');
@@ -170,7 +166,6 @@
             }
           });
       </script>
-      <!-- // 텝 코드 종료 -->
     </main>
   </div>
 </body>

@@ -52,6 +52,8 @@
   font-size: 16px;
   line-height: 180%;
   color: #636e72;
+  border: 0;
+  cursor: pointer;
 }
 
 .tab-navigation .button.active {
@@ -100,11 +102,17 @@
 .tab-content.active {
   display: block;
   height: initial;
-  animation: fadeIn 0.5s;
 }
-@keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+
+@media (min-width: 1024px) {
+  .tab-content.active {
+    animation: fadeIn 0.5s;
+  }
+
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
 }
 
 /* tab1 content */
