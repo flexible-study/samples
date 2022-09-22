@@ -128,14 +128,12 @@
 
             result.forEach((element, index) => {
               listItem += `<li id="accordion${index + 1}">
-                            <a class="button" href="#accordion${index + 1}">
-                              <div class="date">${element.year}</div>
-                              <div class="name">${element.title}</div>
+                            <button class="button" data-accordion-target="#accordion${index + 1}" type="button">
+                              <span class="date">${element.year}</span>
+                              <span class="name">${element.title}</span>
                               <img class="arrow" src="./images/arrow_forward_ios.svg" aria-hidden="true">
-                            </a>
-                            <div class="description">
-                              ${element.description}
-                            </div>
+                            </button>
+                            <div class="description">${element.description}</div>
                           </li>`;
             });
 
@@ -149,11 +147,10 @@
 
             // 버튼일 경우 액션 실행
             if ( button !== null ) {
-              e.preventDefault();
               const ul = button.parentNode.parentNode;
               const li = button.parentNode;
 
-              const nowId = button.getAttribute('href').replace('#', '');
+              const nowId = button.dataset.accordionTarget.replace('#', '');
               const prevLi = ul.querySelector('.active');
 
               if ( nowId === li.id ) {
